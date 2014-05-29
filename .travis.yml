@@ -1,4 +1,4 @@
-language: java
+language: android
 
 notifications:
   email: false
