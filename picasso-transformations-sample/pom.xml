@@ -7,7 +7,6 @@
     <groupId>com.picassotransformations</groupId>
     <artifactId>picasso-transformations-parent</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <relativePath>../pom.xml</relativePath>
   </parent>
 
   <artifactId>picasso-transformations-sample</artifactId>
