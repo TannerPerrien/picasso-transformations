@@ -1,9 +1,12 @@
 /*
  * Copyright (C) 2014 Tanner Perrien
+ *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
- * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
  * Unless required by applicable law or agreed to in writing, software
  * distributed under the License is distributed on an "AS IS" BASIS,
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -22,7 +25,6 @@ import android.view.View;
 import android.widget.GridView;
 import android.widget.ImageView;
 
-import com.picassotransformations.GrayscaleTransformation;
 import com.picassotransformations.StackBlurTransformation;
 import com.picassotransformations.jhlabs.BlockTransformation;
 import com.picassotransformations.jhlabs.BlurTransformation;
@@ -36,6 +38,21 @@ import com.picassotransformations.jhlabs.EmbossTransformation;
 import com.picassotransformations.jhlabs.EqualizeTransformation;
 import com.picassotransformations.jhlabs.ExposureTransformation;
 import com.picassotransformations.jhlabs.GainTransformation;
+import com.picassotransformations.jhlabs.GrayTransformation;
+import com.picassotransformations.jhlabs.GrayscaleTransformation;
+import com.picassotransformations.jhlabs.HSBAdjustTransformation;
+import com.picassotransformations.jhlabs.InvertTransformation;
+import com.picassotransformations.jhlabs.LevelsTransformation;
+import com.picassotransformations.jhlabs.LookupTransformation;
+import com.picassotransformations.jhlabs.MapColorsTransformation;
+import com.picassotransformations.jhlabs.MaskTransformation;
+import com.picassotransformations.jhlabs.PosterizeTransformation;
+import com.picassotransformations.jhlabs.QuantizeTransformation;
+import com.picassotransformations.jhlabs.RGBAdjustTransformation;
+import com.picassotransformations.jhlabs.RescaleTransformation;
+import com.picassotransformations.jhlabs.SolarizeTransformation;
+import com.picassotransformations.jhlabs.ThresholdTransformation;
+import com.picassotransformations.jhlabs.TritoneTransformation;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Transformation;
 
@@ -46,7 +63,6 @@ public class SampleActivity extends Activity {
     private static List<Transformation> sTransformations = new ArrayList<Transformation>();
 
     static {
-        sTransformations.add(new GrayscaleTransformation());
         sTransformations.add(new StackBlurTransformation(20));
         sTransformations.add(new BlurTransformation());
         sTransformations.add(new ContrastTransformation(.7f, 1f));
@@ -60,6 +76,23 @@ public class SampleActivity extends Activity {
         sTransformations.add(new DitherTransformation());
         sTransformations.add(new ExposureTransformation());
         sTransformations.add(new GainTransformation());
+        sTransformations.add(new GrayTransformation());
+        sTransformations.add(new GrayscaleTransformation());
+        sTransformations.add(new HSBAdjustTransformation(.5f,.5f,.5f));
+        // sTransformations.add(new InvertAlphaTransformation());
+        sTransformations.add(new InvertTransformation());
+        sTransformations.add(new LevelsTransformation());
+        sTransformations.add(new LookupTransformation());
+        sTransformations.add(new MapColorsTransformation());
+        sTransformations.add(new MaskTransformation(0xffffff00));
+        sTransformations.add(new PosterizeTransformation());
+        sTransformations.add(new QuantizeTransformation());
+        sTransformations.add(new RGBAdjustTransformation());
+        sTransformations.add(new RescaleTransformation());
+        sTransformations.add(new SolarizeTransformation());
+        sTransformations.add(new ThresholdTransformation());
+        sTransformations.add(new TritoneTransformation());
+
     }
 
     private ImageView mImageView;

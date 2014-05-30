@@ -1,3 +1,19 @@
+/*
+ * Copyright (C) 2014 Tanner Perrien
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
 package com.example.picassotransformations;
 
 import java.util.List;
@@ -22,7 +38,7 @@ public class GridAdapter extends BaseAdapter {
     private List<Transformation> mTransformations;
 
     private String mImageUrl;
-    
+
     private View.OnClickListener mOnClickListener;
 
     public GridAdapter(Context context, List<Transformation> transformations, String imageUrl) {
@@ -31,7 +47,7 @@ public class GridAdapter extends BaseAdapter {
         mTransformations = transformations;
         mImageUrl = imageUrl;
     }
-    
+
     public void setOnClickListener(View.OnClickListener onClickListener) {
         mOnClickListener = onClickListener;
     }
@@ -63,10 +79,10 @@ public class GridAdapter extends BaseAdapter {
         Picasso.with(mContext).load(mImageUrl).transform(transformation).centerCrop().fit().into(image);
         image.setOnClickListener(mOnClickListener);
         image.setOnLongClickListener(new View.OnLongClickListener() {
-            
+
             @Override
             public boolean onLongClick(View v) {
-                String title = transformation.getClass().getSimpleName() + " - " + transformation; 
+                String title = transformation.getClass().getSimpleName() + " - " + transformation;
                 Toast.makeText(mContext, title, Toast.LENGTH_SHORT).show();
                 return true;
             }
