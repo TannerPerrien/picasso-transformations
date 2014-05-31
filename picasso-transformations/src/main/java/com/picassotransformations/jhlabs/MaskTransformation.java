@@ -33,8 +33,9 @@ public class MaskTransformation extends PointTransformation {
         setMask(mask);
     }
 
-    public void setMask(int mask) {
+    public MaskTransformation setMask(int mask) {
         this.mask = mask;
+        return this;
     }
 
     public int getMask() {

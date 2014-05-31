@@ -13,6 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.picassotransformations.jhlabs;
 
 import com.picassotransformations.BaseTransformationTest;
@@ -23,7 +24,7 @@ public class ContrastTransformationTest extends BaseTransformationTest {
 
     @Override
     protected Transformation getTransformation() {
-        return new ContrastTransformation(.5f, .5f);
+        return new ContrastTransformation().setBrightness(.5f).setContrast(.5f);
     }
 
 }

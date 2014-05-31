@@ -14,6 +14,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
 package com.picassotransformations.jhlabs;
 
 /**
@@ -25,22 +26,58 @@ public class ContrastTransformation extends TransferTransformation {
 
     private float contrast = 1.0f;
 
-    /**
-     * 
-     * @param brightness
-     *            the brightness in the range 0 to 1
-     * @param contrast
-     *            the contrast in the range 0 to 1
-     */
-    public ContrastTransformation(float brightness, float contrast) {
-        this.brightness = brightness;
-        this.contrast = contrast;
-    }
-
     protected float transferFunction(float f) {
         f = f * brightness;
         f = (f - 0.5f) * contrast + 0.5f;
         return f;
+    }
+
+    /**
+     * Set the filter brightness.
+     * 
+     * @param brightness the brightness in the range 0 to 1
+     * @min-value 0
+     * @max-value 0
+     * @see #getBrightness
+     */
+    public ContrastTransformation setBrightness(float brightness) {
+        this.brightness = brightness;
+        initialized = false;
+        return this;
+    }
+
+    /**
+     * Get the filter brightness.
+     * 
+     * @return the brightness in the range 0 to 1
+     * @see #setBrightness
+     */
+    public float getBrightness() {
+        return brightness;
+    }
+
+    /**
+     * Set the filter contrast.
+     * 
+     * @param contrast the contrast in the range 0 to 1
+     * @min-value 0
+     * @max-value 0
+     * @see #getContrast
+     */
+    public ContrastTransformation setContrast(float contrast) {
+        this.contrast = contrast;
+        initialized = false;
+        return this;
+    }
+
+    /**
+     * Get the filter contrast.
+     * 
+     * @return the contrast in the range 0 to 1
+     * @see #setContrast
+     */
+    public float getContrast() {
+        return contrast;
     }
 
     public String toString() {

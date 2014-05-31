@@ -21,9 +21,8 @@ import com.picassotransformations.Color;
 public class HSBAdjustTransformation extends PointTransformation {
 
     public float hFactor, sFactor, bFactor;
-
     private float[] hsb = new float[3];
-
+    
     public HSBAdjustTransformation() {
         this(0, 0, 0);
     }
@@ -35,30 +34,33 @@ public class HSBAdjustTransformation extends PointTransformation {
         canFilterIndexColorModel = true;
     }
 
-    public void setHFactor(float hFactor) {
+    public HSBAdjustTransformation setHFactor( float hFactor ) {
         this.hFactor = hFactor;
+        return this;
     }
-
+    
     public float getHFactor() {
         return hFactor;
     }
-
-    public void setSFactor(float sFactor) {
+    
+    public HSBAdjustTransformation setSFactor( float sFactor ) {
         this.sFactor = sFactor;
+        return this;
     }
-
+    
     public float getSFactor() {
         return sFactor;
     }
-
-    public void setBFactor(float bFactor) {
+    
+    public HSBAdjustTransformation setBFactor( float bFactor ) {
         this.bFactor = bFactor;
+        return this;
     }
-
+    
     public float getBFactor() {
         return bFactor;
     }
-
+    
     public int filterRGB(int x, int y, int rgb) {
         int a = rgb & 0xff000000;
         int r = (rgb >> 16) & 0xff;
@@ -67,7 +69,7 @@ public class HSBAdjustTransformation extends PointTransformation {
         Color.RGBtoHSB(r, g, b, hsb);
         hsb[0] += hFactor;
         while (hsb[0] < 0)
-            hsb[0] += Math.PI * 2;
+            hsb[0] += Math.PI*2;
         hsb[1] += sFactor;
         if (hsb[1] < 0)
             hsb[1] = 0;
