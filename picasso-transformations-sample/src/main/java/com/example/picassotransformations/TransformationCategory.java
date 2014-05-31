@@ -46,6 +46,7 @@ import com.picassotransformations.jhlabs.MapColorsTransformation;
 import com.picassotransformations.jhlabs.MarbleTransformation;
 import com.picassotransformations.jhlabs.MaskTransformation;
 import com.picassotransformations.jhlabs.MirrorTransformation;
+import com.picassotransformations.jhlabs.PolarTransformation;
 import com.picassotransformations.jhlabs.PosterizeTransformation;
 import com.picassotransformations.jhlabs.QuantizeTransformation;
 import com.picassotransformations.jhlabs.RGBAdjustTransformation;
@@ -93,7 +94,8 @@ public enum TransformationCategory implements Parcelable {
             Arrays.asList(
                     (Transformation) new KaleidoscopeTransformation().setSides(5),
                     new MarbleTransformation().setXScale(7).setYScale(9),
-                    new MirrorTransformation().setGap(.05f)
+                    new MirrorTransformation().setGap(.05f),
+                    new PolarTransformation()
                     )),
     EFFECTS("Effects",
             Arrays.asList(
