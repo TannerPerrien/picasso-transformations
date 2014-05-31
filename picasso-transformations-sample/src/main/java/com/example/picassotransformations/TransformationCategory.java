@@ -39,10 +39,13 @@ import com.picassotransformations.jhlabs.GrayTransformation;
 import com.picassotransformations.jhlabs.GrayscaleTransformation;
 import com.picassotransformations.jhlabs.HSBAdjustTransformation;
 import com.picassotransformations.jhlabs.InvertTransformation;
+import com.picassotransformations.jhlabs.KaleidoscopeTransformation;
 import com.picassotransformations.jhlabs.LevelsTransformation;
 import com.picassotransformations.jhlabs.LookupTransformation;
 import com.picassotransformations.jhlabs.MapColorsTransformation;
+import com.picassotransformations.jhlabs.MarbleTransformation;
 import com.picassotransformations.jhlabs.MaskTransformation;
+import com.picassotransformations.jhlabs.MirrorTransformation;
 import com.picassotransformations.jhlabs.PosterizeTransformation;
 import com.picassotransformations.jhlabs.QuantizeTransformation;
 import com.picassotransformations.jhlabs.RGBAdjustTransformation;
@@ -86,6 +89,12 @@ public enum TransformationCategory implements Parcelable {
                     new StackBlurTransformation(20),
                     new BlurTransformation()
                     )),
+    DISTORTION_WARPING("Distortion and Warping",
+            Arrays.asList(
+                    (Transformation) new KaleidoscopeTransformation().setSides(5),
+                    new MarbleTransformation().setXScale(7).setYScale(9),
+                    new MirrorTransformation().setGap(.05f)
+                    )),
     EFFECTS("Effects",
             Arrays.asList(
                     new BlockTransformation(20),
@@ -114,7 +123,7 @@ public enum TransformationCategory implements Parcelable {
         return mName;
     }
 
-    public List<? super Transformation> getTransformations() {
+    public List<Transformation> getTransformations() {
         return mTransformations;
     }
     
