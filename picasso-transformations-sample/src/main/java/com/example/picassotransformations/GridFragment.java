@@ -26,7 +26,7 @@ import android.widget.ImageView;
 
 import com.squareup.picasso.Picasso;
 
-public class GridFragment extends Fragment {
+public class GridFragment extends Fragment implements HasBackSupport {
 
     private static final String TULIP_IMG_URL = "http://upload.wikimedia.org/wikipedia/commons/4/44/Tulip_-_floriade_canberra.jpg";
 
@@ -81,6 +81,18 @@ public class GridFragment extends Fragment {
         });
 
         return view;
+    }
+
+    @Override
+    public boolean onBackPressed() {
+        boolean handled = false;
+
+        if (mImageView.getVisibility() == View.VISIBLE) {
+            handled = true;
+            mImageView.setVisibility(View.GONE);
+        }
+
+        return handled;
     }
 
 }

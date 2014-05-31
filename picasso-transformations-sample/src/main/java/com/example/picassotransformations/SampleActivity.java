@@ -17,10 +17,17 @@
 package com.example.picassotransformations;
 
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.KeyEvent;
 
 public class SampleActivity extends FragmentActivity {
+
+    private ViewPager mViewPager;
+
+    private FragmentPagerAdapter mPagerAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +35,31 @@ public class SampleActivity extends FragmentActivity {
 
         setContentView(R.layout.main);
 
-        ViewPager viewPager = (ViewPager) findViewById(R.id.viewpager);
-        viewPager.setAdapter(new GridFragmentPagerAdapter(getSupportFragmentManager()));
+        mPagerAdapter = new GridFragmentPagerAdapter(getSupportFragmentManager());
+
+        mViewPager = (ViewPager) findViewById(R.id.viewpager);
+        mViewPager.setAdapter(mPagerAdapter);
+    }
+
+    @Override
+    public boolean onKeyUp(int keyCode, KeyEvent event) {
+        // TODO Auto-generated method stub
+        return super.onKeyUp(keyCode, event);
+    }
+
+    @Override
+    public void onBackPressed() {
+        boolean backHandled = false;
+
+        int index = mViewPager.getCurrentItem();
+        Fragment f = mPagerAdapter.getItem(index);
+        if (f instanceof HasBackSupport) {
+            backHandled = ((HasBackSupport) f).onBackPressed();
+        }
+
+        if (!backHandled) {
+            super.onBackPressed();
+        }
     }
 
 }
