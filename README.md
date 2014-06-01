@@ -1,7 +1,7 @@
 picasso-transformations
 =======================
 
-A transformation library for Picasso.
+A transformation library providing a variety of transformations for [Picasso](https://github.com/square/picasso).
 
 ![](picasso-transformations-sample/screenshots/color_adjustments.png)
 
