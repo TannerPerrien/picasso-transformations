@@ -3,7 +3,7 @@
 
   <groupId>com.picassotransformations</groupId>
   <artifactId>picasso-transformations-parent</artifactId>
-  <version>1.0.0</version>
+  <version>1.0.1-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Picasso Transformations Parent</name>
@@ -32,7 +32,7 @@
     <url>http://github.com/TannerPerrien/picasso-transformations/</url>
     <connection>scm:git:git://github.com/TannerPerrien/picasso-transformations.git</connection>
     <developerConnection>scm:git:ssh://git@github.com/TannerPerrien/picasso-transformations.git</developerConnection>
-    <tag>picasso-transformations-parent-1.0.0</tag>
+    <tag>HEAD</tag>
   </scm>
 
   <issueManagement>
