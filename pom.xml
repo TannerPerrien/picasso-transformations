@@ -80,6 +80,11 @@
         <artifactId>compile-testing</artifactId>
         <version>${compile-test.version}</version>
       </dependency>
+      <dependency>
+        <groupId>android.support</groupId>
+        <artifactId>compatibility-v4</artifactId>
+        <version>19.1.0</version>
+      </dependency>
     </dependencies>
   </dependencyManagement>
 
