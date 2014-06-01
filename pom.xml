@@ -4,7 +4,7 @@
 
   <groupId>com.picassotransformations</groupId>
   <artifactId>picasso-transformations-parent</artifactId>
-  <version>1.0-SNAPSHOT</version>
+  <version>1.0.0-SNAPSHOT</version>
   <packaging>pom</packaging>
 
   <name>Picasso Transformations Parent</name>
