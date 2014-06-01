@@ -9,6 +9,12 @@ What's Included
 ---------------
 
 * A variety of filters from [JH Labs Image Filters](http://www.jhlabs.com/ip/filters/index.html)
+ * Color Adjustments
+ * Blurring / Sharpening
+ * Distortion / Warping
+ * Effects
+ * Edge Detection
+* Other
 
 Sample
 ------
