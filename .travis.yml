@@ -3,6 +3,7 @@ language: android
 before_install:
   - export TERM=dumb
   - sudo apt-get install -qq libstdc++6:i386 lib32z1
+  - export ANDROID_HOME=$HOME/.android-sdk-installer
   - export COMPONENTS=extra-android-m2repository
   - curl -L https://raw.github.com/embarkmobile/android-sdk-installer/version-1/android-sdk-installer | bash /dev/stdin --install=$COMPONENTS
   - source ~/.android-sdk-installer/env
