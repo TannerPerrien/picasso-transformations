@@ -1,9 +1,9 @@
-picasso-transformations
+Picasso Transformations
 =======================
 
-A transformation library providing a variety of transformations for [Picasso](https://github.com/square/picasso).
+A transformation library providing a variety of image transformations for [Picasso](https://github.com/square/picasso).
 
-![](picasso-transformations-sample/screenshots/color_adjustments.png)
+![](picasso-transformations-sample.png)
 
 What's Included
 ---------------
@@ -16,10 +16,45 @@ What's Included
  * Edge Detection
 * Other
 
-Sample
-------
+Download / Install
+------------------
+
+This jar is not yet available on Maven Central. You must clone the repository and build the project.
+
+    git clone https://github.com/TannerPerrien/picasso-transformations
+    cd picasso-transformations
+    mvn install
+
+Two options:
+
+- Copy `picasso-transformations-x.x.x.jar` from the target directory of the `picasso-transformations` module into your project.
+- Add the dependency to your project.
+
+*Requires local artifact installation, as described above with `mvn install`*
+
+    <dependency>
+      <groupId>com.picassotransformations</groupId>
+      <artifactId>picasso-transformations</artifactId>
+      <version>1.0.0</version>
+    </dependency>
+
+Sample App
+----------
 
 Install the Sample app to see the filters in action. Long press an image to see a Toast describing the filter.
+
+### Requirements to Build Sample
+
+1. A defined ANDROID_HOME environment variable
+2. Android Support Repository (SDK Manager)
+3. Maven 3.0.4+
+
+### Clone / Build / Install
+
+    git clone https://github.com/TannerPerrien/picasso-transformations
+    cd picasso-transformations
+    mvn package
+    adb install picasso-transformations-sample/target/picasso-transformations-sample-1.0.0.apk
 
 License
 -------
