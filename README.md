@@ -47,6 +47,7 @@ Install the Sample app to see the filters in action. Long press an image to see 
 
 1. A defined ANDROID_HOME environment variable
 2. Android Support Repository (SDK Manager)
+3. [Maven Android SDK Deployer](https://github.com/mosabua/maven-android-sdk-deployer) (*mvn install -P 4.4*)
 3. Maven 3.0.4+
 
 ### Clone / Build / Install

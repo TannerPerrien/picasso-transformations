@@ -54,6 +54,7 @@ import com.picassotransformations.jhlabs.RescaleTransformation;
 import com.picassotransformations.jhlabs.SolarizeTransformation;
 import com.picassotransformations.jhlabs.ThresholdTransformation;
 import com.picassotransformations.jhlabs.TritoneTransformation;
+import com.picassotransformations.renderscript.RSGaussianBlurTransformation;
 import com.squareup.picasso.Transformation;
 
 
@@ -88,7 +89,8 @@ public enum TransformationCategory implements Parcelable {
     BLURRING_SHARPENING("Blurring and Sharpening",
             Arrays.asList(
                     new StackBlurTransformation(20),
-                    new BlurTransformation()
+                    new BlurTransformation(),
+                    new RSGaussianBlurTransformation(SampleApplication.getContext(), 4)
                     )),
     DISTORTION_WARPING("Distortion and Warping",
             Arrays.asList(
