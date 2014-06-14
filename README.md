@@ -8,13 +8,18 @@ A transformation library providing a variety of image transformations for [Picas
 What's Included
 ---------------
 
-* A variety of filters from [JH Labs Image Filters](http://www.jhlabs.com/ip/filters/index.html)
+A variety of filters
+
  * Color Adjustments
  * Blurring / Sharpening
  * Distortion / Warping
  * Effects
  * Edge Detection
-* Other
+
+Transformation Categories
+
+* [JH Labs Image Filters](http://www.jhlabs.com/ip/filters/index.html)
+* RenderScript Transformations
 
 Download / Install
 ------------------
