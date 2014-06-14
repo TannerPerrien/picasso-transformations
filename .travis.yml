@@ -1,7 +1,7 @@
 language: android
 
 before_install:
-  - git clone git://github.com/mosabua/maven-android-sdk-deployer.git target/maven-android-sdk-deployer
+  - git clone git://github.com/mosabua/maven-android-sdk-deployer.git
   - cd maven-android-sdk-deployer
   - mvn install -P 4.4
 #  - export TERM=dumb
