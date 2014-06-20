@@ -21,45 +21,46 @@ Transformation Categories
 * [JH Labs Image Filters](http://www.jhlabs.com/ip/filters/index.html)
 * RenderScript Transformations
 
-Download / Install
-------------------
+Building
+--------
 
 This jar is not yet available on Maven Central. You must clone the repository and build the project.
 
+### Requirements to Build
+
+1. A defined ANDROID_HOME environment variable
+2. Android API 19 (SDK Manager)
+3. Android Support Repository (SDK Manager)
+4. [Maven Android SDK Deployer](https://github.com/mosabua/maven-android-sdk-deployer)
+5. Maven 3.1.1+
+
+### Maven Android SDK Deployer
+
+Documenation: [Maven Android SDK Deployer](https://github.com/mosabua/maven-android-sdk-deployer)
+
+    git clone git://github.com/mosabua/maven-android-sdk-deployer.git
+    cd maven-android-sdk-deployer/platforms
+    mvn install -P 4.4
+
+### Build
+
+You can build `picasso-transformations` as follows:
+
     git clone https://github.com/TannerPerrien/picasso-transformations
     cd picasso-transformations
-    mvn install
+    mvn package
 
-Two options:
-
-- Copy `picasso-transformations-x.x.x.jar` from the target directory of the `picasso-transformations` module into your project.
-- Add the dependency to your project.
-
-*Requires local artifact installation, as described above with `mvn install`*
-
-    <dependency>
-      <groupId>com.picassotransformations</groupId>
-      <artifactId>picasso-transformations</artifactId>
-      <version>1.0.0</version>
-    </dependency>
+Copy `picasso-transformations-x.x.x.jar` from the target directory of the `picasso-transformations` module into your project.
 
 Sample App
 ----------
 
 Install the Sample app to see the filters in action. Long press an image to see a Toast describing the filter.
 
-### Requirements to Build Sample
+### Install Sample App
 
-1. A defined ANDROID_HOME environment variable
-2. Android Support Repository (SDK Manager)
-3. [Maven Android SDK Deployer](https://github.com/mosabua/maven-android-sdk-deployer) (*mvn install -P 4.4*)
-3. Maven 3.0.4+
+You can install the sample app after you build the project.
 
-### Clone / Build / Install
-
-    git clone https://github.com/TannerPerrien/picasso-transformations
-    cd picasso-transformations
-    mvn package
     adb install picasso-transformations-sample/target/picasso-transformations-sample-1.0.0.apk
 
 License
