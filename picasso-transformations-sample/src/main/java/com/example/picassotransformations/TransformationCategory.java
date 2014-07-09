@@ -22,6 +22,7 @@ import java.util.List;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import com.picassotransformations.CircleTransformation;
 import com.picassotransformations.StackBlurTransformation;
 import com.picassotransformations.jhlabs.BlockTransformation;
 import com.picassotransformations.jhlabs.BlurTransformation;
@@ -110,7 +111,8 @@ public enum TransformationCategory implements Parcelable {
                     )),
     OTHER("Other",
             Arrays.asList(
-                    (Transformation) new EqualizeTransformation()
+                    new EqualizeTransformation(),
+                    new CircleTransformation()
                     ));
     
     private String mName;
