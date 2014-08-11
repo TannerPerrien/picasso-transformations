@@ -21,13 +21,17 @@ package com.picassotransformations.jhlabs;
  */
 public class RescaleTransformation extends TransferTransformation {
 
+    private String key;
+    
     private float scale = 1.0f;
 
     public RescaleTransformation() {
+        buildKey();
     }
 
     public RescaleTransformation(float scale) {
         this.scale = scale;
+        buildKey();
     }
 
     protected float transferFunction(float v) {
@@ -44,6 +48,7 @@ public class RescaleTransformation extends TransferTransformation {
      */
     public void setScale(float scale) {
         this.scale = scale;
+        buildKey();
         initialized = false;
     }
 
@@ -60,10 +65,14 @@ public class RescaleTransformation extends TransferTransformation {
     public String toString() {
         return "Colors/Rescale...";
     }
+    
+    private void buildKey() {
+        key = RescaleTransformation.class.getCanonicalName() + "-" + scale;
+    }
 
     @Override
     public String key() {
-        return RescaleTransformation.class.getCanonicalName() + "-" + scale;
+        return key;
     }
 
 }

@@ -18,6 +18,8 @@ package com.picassotransformations.jhlabs;
 
 public class RGBAdjustTransformation extends PointTransformation {
 
+    private String key;
+    
     public float rFactor, gFactor, bFactor;
 
     public RGBAdjustTransformation() {
@@ -29,10 +31,13 @@ public class RGBAdjustTransformation extends PointTransformation {
         gFactor = 1 + g;
         bFactor = 1 + b;
         canFilterIndexColorModel = true;
+        
+        buildKey();
     }
 
     public void setRFactor(float rFactor) {
         this.rFactor = 1 + rFactor;
+        buildKey();
     }
 
     public float getRFactor() {
@@ -41,6 +46,7 @@ public class RGBAdjustTransformation extends PointTransformation {
 
     public void setGFactor(float gFactor) {
         this.gFactor = 1 + gFactor;
+        buildKey();
     }
 
     public float getGFactor() {
@@ -49,6 +55,7 @@ public class RGBAdjustTransformation extends PointTransformation {
 
     public void setBFactor(float bFactor) {
         this.bFactor = 1 + bFactor;
+        buildKey();
     }
 
     public float getBFactor() {
@@ -78,8 +85,12 @@ public class RGBAdjustTransformation extends PointTransformation {
         return "Colors/Adjust RGB...";
     }
 
+    private void buildKey() {
+        key = RGBAdjustTransformation.class.getCanonicalName() + "-" + rFactor + "-" + gFactor + "-" + bFactor;
+    }
+    
     @Override
     public String key() {
-        return RGBAdjustTransformation.class.getCanonicalName() + "-" + rFactor + "-" + gFactor + "-" + bFactor;
+        return key;
     }
 }

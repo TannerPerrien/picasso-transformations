@@ -21,7 +21,13 @@ package com.picassotransformations.jhlabs;
  */
 public class ExposureTransformation extends TransferTransformation {
 
+    private String key;
+    
     private float exposure = 1.0f;
+    
+    public ExposureTransformation() {
+        buildKey();
+    }
 
     protected float transferFunction(float f) {
         return 1 - (float) Math.exp(-f * exposure);
@@ -38,6 +44,7 @@ public class ExposureTransformation extends TransferTransformation {
     public void setExposure(float exposure) {
         this.exposure = exposure;
         initialized = false;
+        buildKey();
     }
 
     /**
@@ -54,9 +61,13 @@ public class ExposureTransformation extends TransferTransformation {
         return "Colors/Exposure...";
     }
 
+    private void buildKey() {
+        key = ExposureTransformation.class.getCanonicalName() + "-" + exposure;
+    }
+    
     @Override
     public String key() {
-        return ExposureTransformation.class.getCanonicalName() + "-" + exposure;
+        return key;
     }
 
 }

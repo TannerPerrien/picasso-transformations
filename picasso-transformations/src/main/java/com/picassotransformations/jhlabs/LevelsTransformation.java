@@ -23,6 +23,8 @@ import android.graphics.Rect;
  */
 public class LevelsTransformation extends WholeImageTransformation {
 
+    private String key;
+    
     private int[][] lut;
 
     private float lowLevel = 0;
@@ -34,10 +36,12 @@ public class LevelsTransformation extends WholeImageTransformation {
     private float highOutputLevel = 1;
 
     public LevelsTransformation() {
+        buildKey();
     }
 
     public void setLowLevel(float lowLevel) {
         this.lowLevel = lowLevel;
+        buildKey();
     }
 
     public float getLowLevel() {
@@ -46,6 +50,7 @@ public class LevelsTransformation extends WholeImageTransformation {
 
     public void setHighLevel(float highLevel) {
         this.highLevel = highLevel;
+        buildKey();
     }
 
     public float getHighLevel() {
@@ -54,6 +59,7 @@ public class LevelsTransformation extends WholeImageTransformation {
 
     public void setLowOutputLevel(float lowOutputLevel) {
         this.lowOutputLevel = lowOutputLevel;
+        buildKey();
     }
 
     public float getLowOutputLevel() {
@@ -62,6 +68,7 @@ public class LevelsTransformation extends WholeImageTransformation {
 
     public void setHighOutputLevel(float highOutputLevel) {
         this.highOutputLevel = highOutputLevel;
+        buildKey();
     }
 
     public float getHighOutputLevel() {
@@ -115,11 +122,15 @@ public class LevelsTransformation extends WholeImageTransformation {
     public String toString() {
         return "Colors/Levels...";
     }
+    
+    private void buildKey() {
+        key = LevelsTransformation.class.getCanonicalName() + "-" + lowLevel + "-" + highLevel + "-" + lowOutputLevel + "-"
+                + highOutputLevel;
+    }
 
     @Override
     public String key() {
-        return LevelsTransformation.class.getCanonicalName() + "-" + lowLevel + "-" + highLevel + "-" + lowOutputLevel + "-"
-                + highOutputLevel;
+        return key;
     }
 
 }

@@ -24,6 +24,8 @@ import android.graphics.Bitmap;
  */
 public class MarbleTransformation extends TransformTransformation {
 
+    private String key;
+    
     private float[] sinTable, cosTable;
 
     private float xScale = 4;
@@ -36,6 +38,7 @@ public class MarbleTransformation extends TransformTransformation {
 
     public MarbleTransformation() {
         setEdgeAction(CLAMP);
+        buildKey();
     }
 
     /**
@@ -46,6 +49,7 @@ public class MarbleTransformation extends TransformTransformation {
      */
     public MarbleTransformation setXScale(float xScale) {
         this.xScale = xScale;
+        buildKey();
         return this;
     }
 
@@ -67,6 +71,7 @@ public class MarbleTransformation extends TransformTransformation {
      */
     public MarbleTransformation setYScale(float yScale) {
         this.yScale = yScale;
+        buildKey();
         return this;
     }
 
@@ -90,6 +95,7 @@ public class MarbleTransformation extends TransformTransformation {
      */
     public MarbleTransformation setAmount(float amount) {
         this.amount = amount;
+        buildKey();
         return this;
     }
 
@@ -113,6 +119,7 @@ public class MarbleTransformation extends TransformTransformation {
      */
     public MarbleTransformation setTurbulence(float turbulence) {
         this.turbulence = turbulence;
+        buildKey();
         return this;
     }
 
@@ -155,9 +162,13 @@ public class MarbleTransformation extends TransformTransformation {
     public String toString() {
         return "Distort/Marble...";
     }
+    
+    private void buildKey() {
+        key = MarbleTransformation.class.getCanonicalName() + "-" + xScale + "-" + yScale + "-" + amount + "-" + turbulence;
+    }
 
     @Override
     public String key() {
-        return MarbleTransformation.class.getCanonicalName() + "-" + xScale + "-" + yScale + "-" + amount + "-" + turbulence;
+        return key;
     }
 }

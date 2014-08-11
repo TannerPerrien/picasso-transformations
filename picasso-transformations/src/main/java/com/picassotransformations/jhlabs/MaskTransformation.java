@@ -22,6 +22,8 @@ package com.picassotransformations.jhlabs;
  */
 public class MaskTransformation extends PointTransformation {
 
+    private String key;
+    
     private int mask;
 
     public MaskTransformation() {
@@ -30,11 +32,13 @@ public class MaskTransformation extends PointTransformation {
 
     public MaskTransformation(int mask) {
         canFilterIndexColorModel = true;
-        setMask(mask);
+        this.mask = mask;
+        buildKey();
     }
 
     public MaskTransformation setMask(int mask) {
         this.mask = mask;
+        buildKey();
         return this;
     }
 
@@ -49,10 +53,14 @@ public class MaskTransformation extends PointTransformation {
     public String toString() {
         return "Mask";
     }
+    
+    private void buildKey() {
+        key = MaskTransformation.class.getCanonicalName() + "-" + mask;
+    }
 
     @Override
     public String key() {
-        return MaskTransformation.class.getCanonicalName() + "-" + mask;
+        return key;
     }
 
 }

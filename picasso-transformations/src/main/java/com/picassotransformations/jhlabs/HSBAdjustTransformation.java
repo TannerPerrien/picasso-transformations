@@ -20,6 +20,8 @@ import com.picassotransformations.Color;
 
 public class HSBAdjustTransformation extends PointTransformation {
 
+    private String key;
+    
     public float hFactor, sFactor, bFactor;
     private float[] hsb = new float[3];
     
@@ -32,10 +34,12 @@ public class HSBAdjustTransformation extends PointTransformation {
         sFactor = g;
         bFactor = b;
         canFilterIndexColorModel = true;
+        buildKey();
     }
 
     public HSBAdjustTransformation setHFactor( float hFactor ) {
         this.hFactor = hFactor;
+        buildKey();
         return this;
     }
     
@@ -45,6 +49,7 @@ public class HSBAdjustTransformation extends PointTransformation {
     
     public HSBAdjustTransformation setSFactor( float sFactor ) {
         this.sFactor = sFactor;
+        buildKey();
         return this;
     }
     
@@ -54,6 +59,7 @@ public class HSBAdjustTransformation extends PointTransformation {
     
     public HSBAdjustTransformation setBFactor( float bFactor ) {
         this.bFactor = bFactor;
+        buildKey();
         return this;
     }
     
@@ -88,8 +94,12 @@ public class HSBAdjustTransformation extends PointTransformation {
         return "Colors/Adjust HSB...";
     }
 
+    private void buildKey() {
+        key = HSBAdjustTransformation.class.getCanonicalName() + "-" + hFactor + "-" + sFactor + "-" + bFactor;
+    }
+    
     @Override
     public String key() {
-        return HSBAdjustTransformation.class.getCanonicalName() + "-" + hFactor + "-" + sFactor + "-" + bFactor;
+        return key;
     }
 }

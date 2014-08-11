@@ -35,6 +35,8 @@ public class QuantizeTransformation extends WholeImageTransformation {
     protected final static int[] matrix = {
             0, 0, 0, 0, 0, 7, 3, 5, 1,
     };
+    
+    private String key;
 
     private int sum = 3 + 5 + 7 + 1;
 
@@ -44,6 +46,10 @@ public class QuantizeTransformation extends WholeImageTransformation {
 
     private boolean serpentine = true;
 
+    public QuantizeTransformation() {
+        buildKey();
+    }
+    
     /**
      * Set the number of colors to quantize to.
      * 
@@ -51,6 +57,7 @@ public class QuantizeTransformation extends WholeImageTransformation {
      */
     public void setNumColors(int numColors) {
         this.numColors = Math.min(Math.max(numColors, 8), 256);
+        buildKey();
     }
 
     /**
@@ -69,6 +76,7 @@ public class QuantizeTransformation extends WholeImageTransformation {
      */
     public void setDither(boolean dither) {
         this.dither = dither;
+        buildKey();
     }
 
     /**
@@ -87,6 +95,7 @@ public class QuantizeTransformation extends WholeImageTransformation {
      */
     public void setSerpentine(boolean serpentine) {
         this.serpentine = serpentine;
+        buildKey();
     }
 
     /**
@@ -183,10 +192,14 @@ public class QuantizeTransformation extends WholeImageTransformation {
         return "Colors/Quantize...";
     }
 
+    private void buildKey() {
+        key = QuantizeTransformation.class.getCanonicalName() + "-" + matrix.hashCode() + "-" + sum + "-" + dither + "-" + numColors + "-"
+                + serpentine;
+    }
+    
     @Override
     public String key() {
-        return QuantizeTransformation.class.getCanonicalName() + "-" + matrix.hashCode() + "-" + sum + "-" + dither + "-" + numColors + "-"
-                + serpentine;
+        return key;
     }
 
 }

@@ -23,6 +23,8 @@ package com.picassotransformations.jhlabs;
  */
 public class TritoneTransformation extends PointTransformation {
 
+    private String key;
+    
     private int shadowColor = 0xff000000;
 
     private int midColor = 0xff888888;
@@ -46,6 +48,10 @@ public class TritoneTransformation extends PointTransformation {
 //        return dst;
 //    }
 
+    public TritoneTransformation() {
+        buildKey();
+    }
+    
     public int filterRGB(int x, int y, int rgb) {
         return lut[PixelUtils.brightness(rgb)];
     }
@@ -58,6 +64,7 @@ public class TritoneTransformation extends PointTransformation {
      */
     public void setShadowColor(int shadowColor) {
         this.shadowColor = shadowColor;
+        buildKey();
     }
 
     /**
@@ -78,6 +85,7 @@ public class TritoneTransformation extends PointTransformation {
      */
     public void setMidColor(int midColor) {
         this.midColor = midColor;
+        buildKey();
     }
 
     /**
@@ -98,6 +106,7 @@ public class TritoneTransformation extends PointTransformation {
      */
     public void setHighColor(int highColor) {
         this.highColor = highColor;
+        buildKey();
     }
 
     /**
@@ -114,9 +123,13 @@ public class TritoneTransformation extends PointTransformation {
         return "Colors/Tritone...";
     }
 
+    private void buildKey() {
+        key = TritoneTransformation.class.getCanonicalName() + "-" + shadowColor + "-" + midColor + "-" + highColor;
+    }
+    
     @Override
     public String key() {
-        return TritoneTransformation.class.getCanonicalName() + "-" + shadowColor + "-" + midColor + "-" + highColor;
+        return key;
     }
 
 }

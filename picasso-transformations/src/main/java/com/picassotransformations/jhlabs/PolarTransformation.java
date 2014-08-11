@@ -39,6 +39,8 @@ public class PolarTransformation extends TransformTransformation {
      */
     public final static int INVERT_IN_CIRCLE = 2;
 
+    private String key;
+    
     private int type;
 
     private float width, height;
@@ -62,6 +64,7 @@ public class PolarTransformation extends TransformTransformation {
     public PolarTransformation(int type) {
         this.type = type;
         setEdgeAction(CLAMP);
+        buildKey();
     }
 
     public Bitmap transform(Bitmap source) {
@@ -81,6 +84,7 @@ public class PolarTransformation extends TransformTransformation {
      */
     public PolarTransformation setType(int type) {
         this.type = type;
+        buildKey();
         return this;
     }
 
@@ -215,9 +219,13 @@ public class PolarTransformation extends TransformTransformation {
         return "Distort/Polar Coordinates...";
     }
 
+    private void buildKey() {
+        key = PolarTransformation.class.getCanonicalName() + "-" + type;
+    }
+    
     @Override
     public String key() {
-        return PolarTransformation.class.getCanonicalName() + "-" + type;
+        return key;
     }
 
 }

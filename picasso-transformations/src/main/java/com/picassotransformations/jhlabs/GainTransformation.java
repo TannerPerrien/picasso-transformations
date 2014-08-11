@@ -21,9 +21,15 @@ package com.picassotransformations.jhlabs;
  */
 public class GainTransformation extends TransferTransformation {
 
+    private String key;
+    
     private float gain = 0.5f;
 
     private float bias = 0.5f;
+    
+    public GainTransformation() {
+        buildKey();
+    }
 
     protected float transferFunction(float f) {
         f = ImageMath.gain(f, gain);
@@ -42,6 +48,7 @@ public class GainTransformation extends TransferTransformation {
     public void setGain(float gain) {
         this.gain = gain;
         initialized = false;
+        buildKey();
     }
 
     /**
@@ -65,6 +72,7 @@ public class GainTransformation extends TransferTransformation {
     public void setBias(float bias) {
         this.bias = bias;
         initialized = false;
+        buildKey();
     }
 
     /**
@@ -80,10 +88,14 @@ public class GainTransformation extends TransferTransformation {
     public String toString() {
         return "Colors/Gain...";
     }
+    
+    private void buildKey() {
+        key = GainTransformation.class.getCanonicalName() + "-" + gain + "-" + bias;
+    }
 
     @Override
     public String key() {
-        return GainTransformation.class.getCanonicalName() + "-" + gain + "-" + bias;
+        return key;
     }
 
 }

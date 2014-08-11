@@ -18,6 +18,8 @@ package com.picassotransformations.jhlabs;
 
 public class CurvesTransformation extends TransferTransformation {
 
+    private String key;
+    
     private Curve[] curves = new Curve[1];
 
     public CurvesTransformation() {
@@ -25,6 +27,8 @@ public class CurvesTransformation extends TransferTransformation {
         curves[0] = new Curve();
         curves[1] = new Curve();
         curves[2] = new Curve();
+        
+        key = CurvesTransformation.class.getCanonicalName() + "-" + curves.hashCode();
     }
 
     protected void initialize() {
@@ -43,6 +47,8 @@ public class CurvesTransformation extends TransferTransformation {
             curve
         };
         initialized = false;
+        
+        key = CurvesTransformation.class.getCanonicalName() + "-" + curves.hashCode();
     }
 
     public void setCurves(Curve[] curves) {
@@ -50,6 +56,8 @@ public class CurvesTransformation extends TransferTransformation {
             throw new IllegalArgumentException("Curves must be length 1 or 3");
         this.curves = curves;
         initialized = false;
+        
+        key = CurvesTransformation.class.getCanonicalName() + "-" + curves.hashCode();
     }
 
     public Curve[] getCurves() {
@@ -62,7 +70,7 @@ public class CurvesTransformation extends TransferTransformation {
 
     @Override
     public String key() {
-        return CurvesTransformation.class.getCanonicalName() + "-" + curves.hashCode();
+        return key;
     }
 
 }

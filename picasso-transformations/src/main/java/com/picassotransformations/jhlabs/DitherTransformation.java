@@ -115,6 +115,8 @@ public class DitherTransformation extends PointTransformation {
             45, 79, 102, 119, 121, 120, 113, 97, 82, 56, 32, 24, 23, 22, 31, 35, 53, 71, 95, 103, 104, 105, 96, 92, 74, 62, 55, 47, 37, 36,
             46, 54, 61, 65, 72, 80, 90, 91, 81, 73, 66
     };
+    
+    private String key;
 
     private int[] matrix;
 
@@ -139,6 +141,8 @@ public class DitherTransformation extends PointTransformation {
         matrix = ditherMagic4x4Matrix;
         levels = 6;
         colorDither = true;
+        
+        buildKey();
     }
 
     /**
@@ -149,6 +153,7 @@ public class DitherTransformation extends PointTransformation {
      */
     public void setMatrix(int[] matrix) {
         this.matrix = matrix;
+        buildKey();
     }
 
     /**
@@ -169,6 +174,7 @@ public class DitherTransformation extends PointTransformation {
      */
     public void setLevels(int levels) {
         this.levels = levels;
+        buildKey();
     }
 
     /**
@@ -189,6 +195,7 @@ public class DitherTransformation extends PointTransformation {
      */
     public void setColorDither(boolean colorDither) {
         this.colorDither = colorDither;
+        buildKey();
     }
 
     /**
@@ -247,10 +254,14 @@ public class DitherTransformation extends PointTransformation {
         return "Colors/Dither...";
     }
 
+    private void buildKey() {
+        key = DitherTransformation.class.getCanonicalName() + "-" + matrix.hashCode() + "-" + rows + "-" + cols + "-" + levels + "-"
+                + colorDither;
+    }
+    
     @Override
     public String key() {
-        return DitherTransformation.class.getCanonicalName() + "-" + matrix.hashCode() + "-" + rows + "-" + cols + "-" + levels + "-"
-                + colorDither;
+        return key;
     }
 
 }

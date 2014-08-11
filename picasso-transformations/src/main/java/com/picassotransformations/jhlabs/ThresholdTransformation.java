@@ -21,6 +21,8 @@ package com.picassotransformations.jhlabs;
  */
 public class ThresholdTransformation extends PointTransformation {
 
+    private String key;
+    
     private int lowerThreshold;
 
     private int upperThreshold;
@@ -42,8 +44,9 @@ public class ThresholdTransformation extends PointTransformation {
      * @param t the threshold value
      */
     public ThresholdTransformation(int t) {
-        setLowerThreshold(t);
-        setUpperThreshold(t);
+        lowerThreshold = t;
+        upperThreshold = t;
+        buildKey();
     }
 
     /**
@@ -54,6 +57,7 @@ public class ThresholdTransformation extends PointTransformation {
      */
     public void setLowerThreshold(int lowerThreshold) {
         this.lowerThreshold = lowerThreshold;
+        buildKey();
     }
 
     /**
@@ -74,6 +78,7 @@ public class ThresholdTransformation extends PointTransformation {
      */
     public void setUpperThreshold(int upperThreshold) {
         this.upperThreshold = upperThreshold;
+        buildKey();
     }
 
     /**
@@ -94,6 +99,7 @@ public class ThresholdTransformation extends PointTransformation {
      */
     public void setWhite(int white) {
         this.white = white;
+        buildKey();
     }
 
     /**
@@ -114,6 +120,7 @@ public class ThresholdTransformation extends PointTransformation {
      */
     public void setBlack(int black) {
         this.black = black;
+        buildKey();
     }
 
     /**
@@ -136,8 +143,12 @@ public class ThresholdTransformation extends PointTransformation {
         return "Stylize/Threshold...";
     }
 
+    private void buildKey() {
+        key = ThresholdTransformation.class.getCanonicalName() + "-" + lowerThreshold + "-" + upperThreshold + "-" + white + "-" + black;
+    }
+    
     @Override
     public String key() {
-        return ThresholdTransformation.class.getCanonicalName() + "-" + lowerThreshold + "-" + upperThreshold + "-" + white + "-" + black;
+        return key;
     }
 }

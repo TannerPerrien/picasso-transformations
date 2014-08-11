@@ -21,16 +21,20 @@ package com.picassotransformations.jhlabs;
  */
 public class ChannelMixTransformation extends PointTransformation {
 
+    private String key;
+    
     private int blueGreen, redBlue, greenRed;
 
     private int intoR, intoG, intoB;
 
     public ChannelMixTransformation() {
         canFilterIndexColorModel = true;
+        buildKey();
     }
 
     public void setBlueGreen(int blueGreen) {
         this.blueGreen = blueGreen;
+        buildKey();
     }
 
     public int getBlueGreen() {
@@ -39,6 +43,7 @@ public class ChannelMixTransformation extends PointTransformation {
 
     public void setRedBlue(int redBlue) {
         this.redBlue = redBlue;
+        buildKey();
     }
 
     public int getRedBlue() {
@@ -47,6 +52,7 @@ public class ChannelMixTransformation extends PointTransformation {
 
     public void setGreenRed(int greenRed) {
         this.greenRed = greenRed;
+        buildKey();
     }
 
     public int getGreenRed() {
@@ -55,6 +61,7 @@ public class ChannelMixTransformation extends PointTransformation {
 
     public void setIntoR(int intoR) {
         this.intoR = intoR;
+        buildKey();
     }
 
     public int getIntoR() {
@@ -63,6 +70,7 @@ public class ChannelMixTransformation extends PointTransformation {
 
     public void setIntoG(int intoG) {
         this.intoG = intoG;
+        buildKey();
     }
 
     public int getIntoG() {
@@ -71,6 +79,7 @@ public class ChannelMixTransformation extends PointTransformation {
 
     public void setIntoB(int intoB) {
         this.intoB = intoB;
+        buildKey();
     }
 
     public int getIntoB() {
@@ -92,9 +101,13 @@ public class ChannelMixTransformation extends PointTransformation {
         return "Colors/Mix Channels...";
     }
 
+    private void buildKey() {
+        key = ChannelMixTransformation.class.getCanonicalName() + "-" + blueGreen + "-" + redBlue + "-" + greenRed + "-" + intoR + "-"
+                + intoG + "-" + intoB;
+    }
+    
     @Override
     public String key() {
-        return ChannelMixTransformation.class.getCanonicalName() + "-" + blueGreen + "-" + redBlue + "-" + greenRed + "-" + intoR + "-"
-                + intoG + "-" + intoB;
+        return key;
     }
 }

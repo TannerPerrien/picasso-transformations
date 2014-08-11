@@ -30,11 +30,14 @@ import com.squareup.picasso.Transformation;
  * 
  */
 public class StackBlurTransformation implements Transformation {
+    
+    private String mKey;
 
     private int mRadius;
 
     public StackBlurTransformation(int radius) {
-        this.mRadius = radius;
+        mKey = StackBlurTransformation.class.getCanonicalName() + "-" + radius;
+        mRadius = radius;
     }
 
     @Override
@@ -242,7 +245,7 @@ public class StackBlurTransformation implements Transformation {
 
     @Override
     public String key() {
-        return StackBlurTransformation.class.getCanonicalName() + "-" + mRadius;
+        return mKey;
     }
 
 }

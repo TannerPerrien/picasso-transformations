@@ -24,13 +24,18 @@ import com.squareup.picasso.Transformation;
  * A Filter to pixellate images.
  */
 public class BlockTransformation implements Transformation {
+    
+    private static final int DEFAULT_BLOCK_SIZE = 2;
+    
+    private String key;
 
-    private int blockSize = 2;
+    private int blockSize;
 
     /**
      * Construct a BlockFilter.
      */
     public BlockTransformation() {
+        this(DEFAULT_BLOCK_SIZE);
     }
 
     /**
@@ -40,6 +45,7 @@ public class BlockTransformation implements Transformation {
      *            the number of pixels along each block edge. Range: 1-100+
      */
     public BlockTransformation(int blockSize) {
+        key = BlockTransformation.class.getCanonicalName() + "-" + blockSize;
         this.blockSize = blockSize;
     }
 
@@ -91,6 +97,6 @@ public class BlockTransformation implements Transformation {
 
     @Override
     public String key() {
-        return BlockTransformation.class.getCanonicalName() + "-" + blockSize;
+        return key;
     }
 }

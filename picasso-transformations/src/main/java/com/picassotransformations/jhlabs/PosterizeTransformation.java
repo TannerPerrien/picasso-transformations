@@ -21,6 +21,8 @@ package com.picassotransformations.jhlabs;
  */
 public class PosterizeTransformation extends PointTransformation {
 
+    private String key;
+    
     private int numLevels;
 
     private int[] levels;
@@ -28,7 +30,8 @@ public class PosterizeTransformation extends PointTransformation {
     private boolean initialized = false;
 
     public PosterizeTransformation() {
-        setNumLevels(6);
+        numLevels = 6;
+        buildKey();
     }
 
     /**
@@ -39,6 +42,7 @@ public class PosterizeTransformation extends PointTransformation {
      */
     public void setNumLevels(int numLevels) {
         this.numLevels = numLevels;
+        buildKey();
         initialized = false;
     }
 
@@ -80,10 +84,14 @@ public class PosterizeTransformation extends PointTransformation {
     public String toString() {
         return "Colors/Posterize...";
     }
+    
+    private void buildKey() {
+        key = PosterizeTransformation.class.getCanonicalName() + "-" + numLevels;
+    }
 
     @Override
     public String key() {
-        return PosterizeTransformation.class.getCanonicalName() + "-" + numLevels;
+        return key;
     }
 
 }

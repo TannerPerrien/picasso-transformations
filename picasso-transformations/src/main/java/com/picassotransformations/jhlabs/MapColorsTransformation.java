@@ -22,6 +22,8 @@ package com.picassotransformations.jhlabs;
  */
 public class MapColorsTransformation extends PointTransformation {
 
+    private String key;
+    
     private int oldColor;
 
     private int newColor;
@@ -43,6 +45,8 @@ public class MapColorsTransformation extends PointTransformation {
         canFilterIndexColorModel = true;
         this.oldColor = oldColor;
         this.newColor = newColor;
+        
+        key = MapColorsTransformation.class.getCanonicalName() + "-" + oldColor + "-" + newColor;
     }
 
     public int filterRGB(int x, int y, int rgb) {
@@ -53,6 +57,6 @@ public class MapColorsTransformation extends PointTransformation {
 
     @Override
     public String key() {
-        return MapColorsTransformation.class.getCanonicalName() + "-" + oldColor + "-" + newColor;
+        return key;
     }
 }

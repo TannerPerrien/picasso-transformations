@@ -31,6 +31,8 @@ import com.squareup.picasso.Transformation;
 
 public class MirrorTransformation implements Transformation {
 
+    private String key;
+    
     private float opacity = 1.0f;
 
     private float centreY = 0.5f;
@@ -40,10 +42,12 @@ public class MirrorTransformation implements Transformation {
     private float gap;
 
     public MirrorTransformation() {
+        buildKey();
     }
 
     public MirrorTransformation setDistance(float distance) {
         this.distance = distance;
+        buildKey();
         return this;
     }
 
@@ -53,6 +57,7 @@ public class MirrorTransformation implements Transformation {
 
     public MirrorTransformation setGap(float gap) {
         this.gap = gap;
+        buildKey();
         return this;
     }
 
@@ -68,6 +73,7 @@ public class MirrorTransformation implements Transformation {
      */
     public MirrorTransformation setOpacity(float opacity) {
         this.opacity = opacity;
+        buildKey();
         return this;
     }
 
@@ -83,6 +89,7 @@ public class MirrorTransformation implements Transformation {
 
     public MirrorTransformation setCentreY(float centreY) {
         this.centreY = centreY;
+        buildKey();
         return this;
     }
 
@@ -139,10 +146,14 @@ public class MirrorTransformation implements Transformation {
     public String toString() {
         return "Effects/Mirror...";
     }
+    
+    private void buildKey() {
+        key = MirrorTransformation.class.getCanonicalName() + "-" + opacity + "-" + centreY + "-" + distance + "-" + gap;
+    }
 
     @Override
     public String key() {
-        return MirrorTransformation.class.getCanonicalName() + "-" + opacity + "-" + centreY + "-" + distance + "-" + gap;
+        return key;
     }
 
 }

@@ -27,6 +27,8 @@ import com.squareup.picasso.Transformation;
 
 public class RSGaussianBlurTransformation implements Transformation {
 
+    private String key;
+    
     private Context mContext;
 
     private int mRadius;
@@ -40,6 +42,8 @@ public class RSGaussianBlurTransformation implements Transformation {
     public RSGaussianBlurTransformation(Context context, int radius) {
         mContext = context;
         mRadius = radius;
+        
+        key = RSGaussianBlurTransformation.class.getCanonicalName() + "-" + radius;
     }
 
     @Override
@@ -61,7 +65,7 @@ public class RSGaussianBlurTransformation implements Transformation {
 
     @Override
     public String key() {
-        return RSGaussianBlurTransformation.class.getCanonicalName() + "-" + mRadius;
+        return key;
     }
 
 }

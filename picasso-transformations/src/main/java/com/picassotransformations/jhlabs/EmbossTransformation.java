@@ -24,16 +24,20 @@ import android.graphics.Rect;
 public class EmbossTransformation extends WholeImageTransformation {
 
     private final static float pixelScale = 255.9f;
+    
+    private String key;
 
     private float azimuth = 135.0f * ImageMath.PI / 180.0f, elevation = 30.0f * ImageMath.PI / 180f;
     private boolean emboss = false;
     private float width45 = 3.0f;
 
     public EmbossTransformation() {
+        buildKey();
     }
 
     public void setAzimuth(float azimuth) {
         this.azimuth = azimuth;
+        buildKey();
     }
 
     public float getAzimuth() {
@@ -42,6 +46,7 @@ public class EmbossTransformation extends WholeImageTransformation {
 
     public void setElevation(float elevation) {
         this.elevation = elevation;
+        buildKey();
     }
 
     public float getElevation() {
@@ -50,6 +55,7 @@ public class EmbossTransformation extends WholeImageTransformation {
 
     public void setBumpHeight(float bumpHeight) {
         this.width45 = 3 * bumpHeight;
+        buildKey();
     }
 
     public float getBumpHeight() {
@@ -58,6 +64,7 @@ public class EmbossTransformation extends WholeImageTransformation {
 
     public void setEmboss(boolean emboss) {
         this.emboss = emboss;
+        buildKey();
     }
 
     public boolean getEmboss() {
@@ -136,10 +143,14 @@ public class EmbossTransformation extends WholeImageTransformation {
         return "Stylize/Emboss...";
     }
 
+    private void buildKey() {
+        key = EmbossTransformation.class.getCanonicalName() + "-" + pixelScale + "-" + azimuth + "-" + elevation + "-"
+                + emboss + "-" + width45;
+    }
+    
     @Override
     public String key() {
-        return EmbossTransformation.class.getCanonicalName() + "-" + pixelScale + "-" + azimuth + "-" + elevation + "-"
-                + emboss + "-" + width45;
+        return key;
     }
 
 }

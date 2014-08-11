@@ -25,6 +25,8 @@ import android.graphics.PointF;
  */
 public class KaleidoscopeTransformation extends TransformTransformation {
 
+    private String key;
+    
     private float angle = 0;
 
     private float angle2 = 0;
@@ -46,6 +48,7 @@ public class KaleidoscopeTransformation extends TransformTransformation {
      */
     public KaleidoscopeTransformation() {
         setEdgeAction(CLAMP);
+        buildKey();
     }
 
     /**
@@ -57,6 +60,7 @@ public class KaleidoscopeTransformation extends TransformTransformation {
      */
     public KaleidoscopeTransformation setSides(int sides) {
         this.sides = sides;
+        buildKey();
         return this;
     }
 
@@ -79,6 +83,7 @@ public class KaleidoscopeTransformation extends TransformTransformation {
      */
     public KaleidoscopeTransformation setAngle(float angle) {
         this.angle = angle;
+        buildKey();
         return this;
     }
 
@@ -101,6 +106,7 @@ public class KaleidoscopeTransformation extends TransformTransformation {
      */
     public KaleidoscopeTransformation setAngle2(float angle2) {
         this.angle2 = angle2;
+        buildKey();
         return this;
     }
 
@@ -122,6 +128,7 @@ public class KaleidoscopeTransformation extends TransformTransformation {
      */
     public KaleidoscopeTransformation setCentreX(float centreX) {
         this.centreX = centreX;
+        buildKey();
         return this;
     }
 
@@ -143,6 +150,7 @@ public class KaleidoscopeTransformation extends TransformTransformation {
      */
     public KaleidoscopeTransformation setCentreY(float centreY) {
         this.centreY = centreY;
+        buildKey();
         return this;
     }
 
@@ -165,6 +173,7 @@ public class KaleidoscopeTransformation extends TransformTransformation {
     public KaleidoscopeTransformation setCentre(PointF centre) {
         this.centreX = centre.x;
         this.centreY = centre.y;
+        buildKey();
         return this;
     }
 
@@ -187,6 +196,7 @@ public class KaleidoscopeTransformation extends TransformTransformation {
      */
     public KaleidoscopeTransformation setRadius(float radius) {
         this.radius = radius;
+        buildKey();
         return this;
     }
 
@@ -227,11 +237,15 @@ public class KaleidoscopeTransformation extends TransformTransformation {
     public String toString() {
         return "Distort/Kaleidoscope...";
     }
+    
+    private void buildKey() {
+        key = KaleidoscopeTransformation.class.getCanonicalName() + "-" + angle + "-" + angle2 + "-" + centreX + "-" + centreY + "-"
+                + sides + "-" + radius + "-" + icentreX + "-" + icentreY;
+    }
 
     @Override
     public String key() {
-        return KaleidoscopeTransformation.class.getCanonicalName() + "-" + angle + "-" + angle2 + "-" + centreX + "-" + centreY + "-"
-                + sides + "-" + radius + "-" + icentreX + "-" + icentreY;
+        return key;
     }
 
 }

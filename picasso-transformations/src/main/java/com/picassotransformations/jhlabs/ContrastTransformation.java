@@ -22,10 +22,16 @@ package com.picassotransformations.jhlabs;
  */
 public class ContrastTransformation extends TransferTransformation {
 
+    private String key;
+    
     private float brightness = 1.0f;
 
     private float contrast = 1.0f;
 
+    public ContrastTransformation() {
+        buildKey();
+    }
+    
     protected float transferFunction(float f) {
         f = f * brightness;
         f = (f - 0.5f) * contrast + 0.5f;
@@ -42,6 +48,7 @@ public class ContrastTransformation extends TransferTransformation {
      */
     public ContrastTransformation setBrightness(float brightness) {
         this.brightness = brightness;
+        buildKey();
         initialized = false;
         return this;
     }
@@ -66,6 +73,7 @@ public class ContrastTransformation extends TransferTransformation {
      */
     public ContrastTransformation setContrast(float contrast) {
         this.contrast = contrast;
+        buildKey();
         initialized = false;
         return this;
     }
@@ -84,9 +92,13 @@ public class ContrastTransformation extends TransferTransformation {
         return "Colors/Contrast...";
     }
 
+    private void buildKey() {
+        key = ContrastTransformation.class.getCanonicalName() + "-" + brightness + "-" + contrast;
+    }
+    
     @Override
     public String key() {
-        return ContrastTransformation.class.getCanonicalName() + "-" + brightness + "-" + contrast;
+        return key;
     }
 
 }

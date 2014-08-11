@@ -21,6 +21,8 @@ package com.picassotransformations.jhlabs;
  */
 public class LookupTransformation extends PointTransformation {
 
+    private String key;
+    
     private Colormap colormap = new Gradient();
 
     /**
@@ -28,6 +30,7 @@ public class LookupTransformation extends PointTransformation {
      */
     public LookupTransformation() {
         canFilterIndexColorModel = true;
+        buildKey();
     }
 
     /**
@@ -48,6 +51,7 @@ public class LookupTransformation extends PointTransformation {
      */
     public void setColormap(Colormap colormap) {
         this.colormap = colormap;
+        buildKey();
     }
 
     /**
@@ -72,10 +76,14 @@ public class LookupTransformation extends PointTransformation {
     public String toString() {
         return "Colors/Lookup...";
     }
+    
+    private void buildKey() {
+        key = LookupTransformation.class.getCanonicalName() + "-" + colormap.hashCode();
+    }
 
     @Override
     public String key() {
-        return LookupTransformation.class.getCanonicalName() + "-" + colormap.hashCode();
+        return key;
     }
 
 }

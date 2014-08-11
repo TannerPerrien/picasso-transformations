@@ -24,7 +24,9 @@ import android.graphics.Rect;
  */
 public class DiffusionTransformation extends WholeImageTransformation {
 
-    private final static int[] diffusionMatrix = { 0, 0, 0, 0, 0, 7, 3, 5, 1, };
+    private static final int[] DIFFUSION_MATRIX = { 0, 0, 0, 0, 0, 7, 3, 5, 1, };
+
+    private String key;
 
     private int[] matrix;
     private int sum = 3 + 5 + 7 + 1;
@@ -36,7 +38,8 @@ public class DiffusionTransformation extends WholeImageTransformation {
      * Construct a DiffusionFilter.
      */
     public DiffusionTransformation() {
-        setMatrix(diffusionMatrix);
+        setMatrix(DIFFUSION_MATRIX);
+        buildKey();
     }
 
     /**
@@ -49,6 +52,7 @@ public class DiffusionTransformation extends WholeImageTransformation {
      */
     public void setSerpentine(boolean serpentine) {
         this.serpentine = serpentine;
+        buildKey();
     }
 
     /**
@@ -70,6 +74,7 @@ public class DiffusionTransformation extends WholeImageTransformation {
      */
     public void setColorDither(boolean colorDither) {
         this.colorDither = colorDither;
+        buildKey();
     }
 
     /**
@@ -94,6 +99,8 @@ public class DiffusionTransformation extends WholeImageTransformation {
         sum = 0;
         for (int i = 0; i < matrix.length; i++)
             sum += matrix[i];
+        
+        buildKey();
     }
 
     /**
@@ -115,6 +122,7 @@ public class DiffusionTransformation extends WholeImageTransformation {
      */
     public void setLevels(int levels) {
         this.levels = levels;
+        buildKey();
     }
 
     /**
@@ -209,10 +217,14 @@ public class DiffusionTransformation extends WholeImageTransformation {
         return "Colors/Diffusion Dither...";
     }
 
+    private void buildKey() {
+        key = DiffusionTransformation.class.getCanonicalName() + "-" + matrix.hashCode() + "-" + sum + "-" + serpentine
+                + "-" + colorDither + "-" + levels;
+    }
+    
     @Override
     public String key() {
-        return DiffusionTransformation.class.getCanonicalName() + "-" + matrix.hashCode() + "-" + sum + "-"
-                + serpentine + "-" + colorDither + "-" + levels;
+        return key;
     }
 
 }
